@@ -1,7 +1,7 @@
-#!bin/bash/sh
+#!/bin/sh
 
 
-source_file="/home/vlad/lab1/fileToCheck.cpp"
+source_file="$1"
 temp_dir=$(mktemp -d)
 exitup_done=false
 
@@ -34,6 +34,8 @@ fi
 if [ ! -f "$source_file" ]; then
     echo "Файл $source_file не существует"
     exit 2
+else 
+    echo "Файл $source_file существует"
 fi
 
 output_name=$(grep '^[[:space:]]*//[[:space:]]*Output:[[:space:]]*[[:alnum:]_]*' "$source_file" | head -1 | sed 's/^.*Output:[[:space:]]*\([[:alnum:]_]*\).*$/\1/')
@@ -55,7 +57,7 @@ fi
 origin_dir=$(pwd)
 cd "$temp_dir"
 
-if g++ "$source_file" -o "$output_name"; then
+if g++ "$origin_dir/$source_file" -o "$output_name"; then
     echo "Сборка  завершена"
 
     cp "$temp_dir/$output_name" "$origin_dir"
@@ -64,4 +66,4 @@ else
     exit 4
 fi
 
-exit ${exit_code:-0}
+exit 0
