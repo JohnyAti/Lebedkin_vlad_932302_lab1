@@ -11,44 +11,47 @@
 
 volatile sig_atomic_t wasSigHup = 0;
 
-void sigHupHandler(int r) {
+void sigHupHandler(int r)
+{
     wasSigHup = 1;
 }
 
-int main() {
-    // 1. Создание сокета
+int main() 
+{
     int listenSocket = socket(AF_INET, SOCK_STREAM, 0);
-    if (listenSocket == -1) {
+    if (listenSocket == -1) 
+    {
         perror("socket");
         exit(1);
     }
 
-    struct sockaddr_in addr = {
+    struct sockaddr_in addr = 
+    {
         .sin_family = AF_INET,
         .sin_port = htons(12345),
         .sin_addr.s_addr = INADDR_ANY
     };
 
-    if (bind(listenSocket, (struct sockaddr*)&addr, sizeof(addr)) == -1) {
+    if (bind(listenSocket, (struct sockaddr*)&addr, sizeof(addr)) == -1) 
+    {
         perror("bind");
         close(listenSocket);
         exit(1);
     }
 
-    if (listen(listenSocket, SOMAXCONN) == -1) {
+    if (listen(listenSocket, SOMAXCONN) == -1) 
+    {
         perror("listen");
         close(listenSocket);
         exit(1);
     }
 
-    // 2. Настройка обработчика сигнала
     struct sigaction sa;
     sigaction(SIGHUP, NULL, &sa);
     sa.sa_handler = sigHupHandler;
     sa.sa_flags |= SA_RESTART;
     sigaction(SIGHUP, &sa, NULL);
 
-    // 3. Блокировка сигнала
     sigset_t blockedMask, origMask;
     sigemptyset(&blockedMask);
     sigaddset(&blockedMask, SIGHUP);
