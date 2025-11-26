@@ -24,9 +24,10 @@ void* provider(void* arg)
             pthread_mutex_unlock(&lock);
             continue;
         }
+        
         ready = 1;
-        printf("Событие отправлено \n");
         pthread_cond_signal(&cond1);
+        printf("Событие отправлено \n");
         pthread_mutex_unlock(&lock);
         
         counter++;
@@ -41,9 +42,10 @@ void* consumer(void* arg)
     {
         pthread_mutex_lock(&lock);
         while (ready == 0) 
-        {
-            pthread_cond_wait(&cond1, &lock);
+        {   
+            pthread_cond_wait(&cond1, &lock);          
         }
+        
         ready = 0;
         printf("Событие принято\n");
         pthread_mutex_unlock(&lock);
