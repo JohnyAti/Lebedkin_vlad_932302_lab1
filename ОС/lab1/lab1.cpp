@@ -27,7 +27,7 @@ void* provider(void* arg)
         
         ready = 1;
         pthread_cond_signal(&cond1);
-        printf("Событие отправлено \n");
+        printf("The event has been sent\n");
         pthread_mutex_unlock(&lock);
         
         counter++;
@@ -47,7 +47,7 @@ void* consumer(void* arg)
         }
         
         ready = 0;
-        printf("Событие принято\n");
+        printf("The event has happened\n");
         pthread_mutex_unlock(&lock);
         
         counter++;
@@ -57,7 +57,6 @@ void* consumer(void* arg)
 
 int main() 
 {
-    setlocale(LC_ALL,"Russian");
     pthread_t provider_thread, consumer_thread;
     
     pthread_create(&provider_thread, NULL, provider, NULL);
