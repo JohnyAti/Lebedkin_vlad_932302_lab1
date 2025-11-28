@@ -28,7 +28,7 @@ int main()
 
     sockaddr_in addr{};
     addr.sin_family = AF_INET;
-    addr.sin_port = htons(1080);
+    addr.sin_port = htons(5000);
     addr.sin_addr.s_addr = INADDR_ANY;
 
     if (bind(serverSocket, (sockaddr*)&addr, sizeof(addr)) == -1) 
@@ -57,7 +57,7 @@ int main()
     sigprocmask(SIG_BLOCK, &blockedMask, &origMask);
 
     vector<int> clients;
-    cout << "Server started on port 1080" << endl;
+    cout << "Server started on port 5000" << endl;
 
     while (true) 
     {
