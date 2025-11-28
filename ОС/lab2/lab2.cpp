@@ -114,7 +114,7 @@ int main()
             if (FD_ISSET(*it, &fds)) 
             {
                 char buffer[1024];
-                int bytesRead = recv(*it, buffer, sizeof(buffer), 0);
+                ssize_t  bytesRead = recv(*it, buffer, sizeof(buffer), 0);
                 
                 if (bytesRead > 0) 
                 {
