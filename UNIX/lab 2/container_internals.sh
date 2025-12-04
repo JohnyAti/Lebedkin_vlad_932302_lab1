@@ -16,8 +16,8 @@ while :; do
     for name in @21 @22 @23 @24 @25; do
         path=$shared_dir/$name
         if [ ! -e "$path" ]; then
+            echo "$container_code $counter" > "$path"         
             counter=$((counter+1))
-            echo "$container_code $counter" > "$path"
             created="$name"
             break
         fi
