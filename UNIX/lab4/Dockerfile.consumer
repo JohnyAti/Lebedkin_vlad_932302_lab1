@@ -1,0 +1,5 @@
+FROM python:3.9-alpine
+WORKDIR /app
+COPY consumer.py .
+RUN pip install --no-cache-dir kafka-python
+CMD ["python", "consumer.py"]
