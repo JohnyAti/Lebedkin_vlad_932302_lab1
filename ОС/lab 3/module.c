@@ -92,7 +92,8 @@ static ssize_t profile_read(struct file *file, char __user *buffer, size_t buffe
     } 
     else 
     {
-        if (copy_to_user(buffer, output_msg + *offset, msg_len - *offset)) {
+        if (copy_to_user(buffer, output_msg + *offset, msg_len - *offset)) 
+        {
             pr_info("Ошибка copy_to_user\n");
             ret = -EFAULT;
         } 
@@ -153,4 +154,5 @@ static void __exit tsulab_exit(void)
 module_init(tsulab_init);
 module_exit(tsulab_exit);
 MODULE_LICENSE("GPL");
+
 
