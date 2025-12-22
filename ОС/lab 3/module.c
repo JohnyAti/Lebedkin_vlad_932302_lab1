@@ -152,6 +152,3 @@ module_init(tsulab_init);
 module_exit(tsulab_exit);
 
 MODULE_LICENSE("GPL");
-MODULE_AUTHOR("Студент ТГУ");
-MODULE_DESCRIPTION("Модуль ТГУ для ОС. Создает /proc/tsulab с расчетом дней до/после сближения межзвездного объекта 3I/ATLAS с Землей (19 дек 2025).");
-MODULE_VERSION("2.0");
