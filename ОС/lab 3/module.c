@@ -15,8 +15,7 @@
 #define PROC_FILENAME "tsulab"
 
 // Максимальное сближение с Землей: 19 декабря 2025 года, 00:00 UTC
-static struct timespec64 closest_approach_date = 
-{
+static struct timespec64 closest_approach_date = {
     .tv_sec = 1766102400, // 19 декабря 2025, 00:00 UTC
 };
 
@@ -154,5 +153,6 @@ static void __exit tsulab_exit(void)
 module_init(tsulab_init);
 module_exit(tsulab_exit);
 MODULE_LICENSE("GPL");
+
 
 
