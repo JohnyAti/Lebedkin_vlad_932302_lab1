@@ -111,7 +111,7 @@ static ssize_t profile_write(struct file *file, const char __user *buff, size_t 
 {
     
     *off += len;
-    pr_info("Запись в /proc/%s (игнорируется)\n", PROC_FILENAME);
+    pr_info(PROC_FILENAME);
     return len;
 }
 
@@ -153,3 +153,4 @@ static void __exit tsulab_exit(void)
 module_init(tsulab_init);
 module_exit(tsulab_exit);
 MODULE_LICENSE("GPL");
+
